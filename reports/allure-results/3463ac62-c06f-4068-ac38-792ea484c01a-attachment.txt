@@ -1,0 +1,8 @@
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:1049 Starting new HTTPS connection (1): fakestoreapi.com:443
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:544 https://fakestoreapi.com:443 "POST /carts HTTP/1.1" 201 85
+[32mINFO    [0m root:conftest.py:20 REQUEST: POST https://fakestoreapi.com//carts
+[32mINFO    [0m root:conftest.py:21 Request Headers: {'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '85', 'Content-Type': 'application/json'}
+[32mINFO    [0m root:conftest.py:23 Request Body: b'{"userId": "1", "date": "2026-03-19", "products": [{"productId": 58, "quantity": 7}]}'
+[32mINFO    [0m root:conftest.py:24 RESPONSE Status: 201
+[32mINFO    [0m root:conftest.py:25 Response Headers: {'Date': 'Thu, 19 Mar 2026 13:35:38 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '85', 'Connection': 'keep-alive', 'access-control-allow-origin': '*', 'etag': 'W/"55-bklrTvI179uurYxuOAoCL13XwrM"', 'x-powered-by': 'Express', 'cf-cache-status': 'DYNAMIC', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=tmRVRO5KWo1ft%2FNphEjTxkInSx9lj1zJe0va1bUOaCJb%2FJ%2FBb4uIWRFiQypQMyALG0OLGx3Nmsjg72GtxLfB7v22K3bEhQYe5qRAXZcflFP9FQkh2Jpi13NMtbY%3D"}]}', 'Server': 'cloudflare', 'CF-RAY': '9decdc88ec8a0034-LHR', 'alt-svc': 'h3=":443"; ma=86400'}
+[32mINFO    [0m root:conftest.py:27 Response Body: {'id': 11, 'userId': '1', 'date': '2026-03-19', 'products': [{'productId': 58, 'quantity': 7}]}
