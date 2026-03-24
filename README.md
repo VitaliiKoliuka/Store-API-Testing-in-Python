@@ -129,6 +129,6 @@ pytest -s -v --alluredir=reports\allure-results testCases\ \
 allure generate reports\allure-results -o reports\allure-html --clean\
 allure open reports\allure-html
 
-**Execute tests via Datch Script**:\
+**Execute tests via Batch Script**:\
 open command promt as a **Administrator** go to location and execute **run.bat (windows)** / **run.sh (linux/mac)**
 
