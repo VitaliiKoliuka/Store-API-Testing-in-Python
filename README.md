@@ -34,49 +34,58 @@ It is built as a **learning + portfolio project** to showcase API automation ski
 
 ## 📁 Project Structure
 
-Store-API-Testing-in-Python
-│
-├── configurations
-│ └── config.ini
-├── datamodels
-│ ├──__init__.py
-│ ├── Adress.py
-│ ├── Cart.py
-│ ├── CartProduct.py
-│ ├── Geolocation.py
-│ ├── Login.py
-│ ├── Name.py
-│ ├── Product.py
-│ └── User.py
-├── logs
-│ └── test_logging.log
-├── payloads
-│ ├──__init__.py
-│ └── Payload.py
-├── reports
-│ ├── allure-html
-│ ├── allure-results
-│ └── assets
-├── routes
-│ ├──__init__.py
-│ └── Routes.py
-├── testCases
-│ ├──__init__.py
-│ ├── conftest.py
-│ ├── pytest.ini
-│ ├── test_cart_tests.py
-│ ├── test_product_datadriven_tests.py
-│ ├── test_product_tests.py
-│ └── test_user_tests.py
-├── testData
-│ └── product.json
-├── utils
-│ ├──__init__.py
-│ ├── ConfigReader.py
-│ ├── DataProvider.py
-│ └── data_utils.py
-├── requirements.txt # Dependencies
-├── run.bat
+Store-API-Testing-in-Python\
+│\
+├── configurations\
+│ └── config.ini\
+│\
+├── datamodels\
+│ ├──__init__.py\
+│ ├── Adress.py\
+│ ├── Cart.py\
+│ ├── CartProduct.py\
+│ ├── Geolocation.py\
+│ ├── Login.py\
+│ ├── Name.py\
+│ ├── Product.py\
+│ └── User.py\
+│\
+├── logs\
+│ └── test_logging.log\
+│\
+├── payloads\
+│ ├──__init__.py\
+│ └── Payload.py\
+│\
+├── reports\
+│ ├── allure-html\
+│ ├── allure-results\
+│ └── assets\
+│\
+├── routes\
+│ ├──__init__.py\
+│ └── Routes.py\
+│\
+├── testCases\
+│ ├──__init__.py\
+│ ├── conftest.py\
+│ ├── pytest.ini\
+│ ├── test_cart_tests.py\
+│ ├── test_product_datadriven_tests.py\
+│ ├── test_product_tests.py\
+│ └── test_user_tests.py\
+│\
+├── testData\
+│ └── product.json\
+│\
+├── utils\
+│ ├──__init__.py\
+│ ├── ConfigReader.py\
+│ ├── DataProvider.py\
+│ └── data_utils.py\
+│\
+├── requirements.txt # Dependencies\
+├── run.bat\
 └── README.md
 
 
