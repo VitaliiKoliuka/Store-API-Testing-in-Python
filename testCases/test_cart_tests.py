@@ -14,6 +14,8 @@ class TestProductAPI:
         self.config = setup["config_reader"]
         self.payload = Payload()
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=1)
     def test_get_all_carts(self):
         res = requests.get(self.base_url+Routes.GET_ALL_CARTS)
         assert res.status_code==200
@@ -21,6 +23,8 @@ class TestProductAPI:
         print(json.dumps(data,indent=4))
         assert len(data)>0
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=2)
     def test_get_cart_by_id(self):
         cart_id = self.config.get_property("cartId")
         endpoint = self.base_url + Routes.GET_CART_BY_ID.format(id=cart_id)
@@ -29,6 +33,8 @@ class TestProductAPI:
         data = res.json()
         print(json.dumps(data, indent=4))
 
+    @pytest.mark.regression
+    @pytest.mark.run(order=3)
     def test_carts_by_date_range(self):
         start_date = self.config.get_property("startdate")
         end_date = self.config.get_property("enddate")
@@ -42,6 +48,8 @@ class TestProductAPI:
         cart_dates = [item["date"] for item in data]
         assert validate_cart_dates_within_range(cart_dates,start_date,end_date)
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=4)
     def test_get_user_cart(self):
         user_id = self.config.get_property("userId")
         endpoint = self.base_url + Routes.GET_USER_CART.format(userId=user_id)
@@ -52,6 +60,9 @@ class TestProductAPI:
         for item in data:
             assert item["userId"] == int(user_id)
 
+    @pytest.mark.smoke
+    @pytest.mark.run(order=5)
+    @pytest.mark.dependency(name="add_cart")
     def test_create_cart(self):
         user_id = self.config.get_property("userId")
         cart = self.payload.cart_payload(user_id)
@@ -66,6 +77,9 @@ class TestProductAPI:
         assert data["userId"] is not None
         assert len(data["products"]) > 0
 
+    @pytest.mark.regression
+    @pytest.mark.run(order=6)
+    @pytest.mark.dependency(dependns=["add_cart"])
     def test_update_cart(self):
         user_id = self.config.get_property("userId")
         cart_id = self.config.get_property("cartId")
@@ -79,6 +93,9 @@ class TestProductAPI:
         assert data["userId"] == user_id
         assert len(data["products"]) == 1
 
+    @pytest.mark.regression
+    @pytest.mark.run(order=7)
+    @pytest.mark.dependency(dependns=["add_cart"])
     def test_delete_cart(self):
         cart_id = self.config.get_property("cartId")
         endpoint = self.base_url + Routes.DELETE_CART.format(id=cart_id)

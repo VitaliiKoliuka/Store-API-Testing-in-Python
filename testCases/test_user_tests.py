@@ -12,6 +12,8 @@ class TestProductAPI:
         self.config = setup["config_reader"]
         self.payload = Payload()
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=1)
     def test_get_all_users(self):
         res = requests.get(self.base_url+Routes.GET_ALL_USERS)
         assert res.status_code==200
@@ -19,6 +21,8 @@ class TestProductAPI:
         print(json.dumps(data,indent=4))
         assert len(data)>0
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=2)
     def test_get_user_by_id(self):
         user_id = self.config.get_property("userId")
         endpoint = self.base_url+Routes.GET_USER_BY_ID.format(id = user_id)
@@ -27,6 +31,8 @@ class TestProductAPI:
         data = res.json()
         print(json.dumps(data, indent=4))
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=3)
     def test_get_users_with_limit(self):
         limit = self.config.get_property("limit")
         endpoint = self.base_url + Routes.GET_USERS_WITH_LIMIT.format(limit=limit)
@@ -36,6 +42,8 @@ class TestProductAPI:
         print(json.dumps(data, indent=4))
         assert len(data) == int(limit)
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=4)
     def test_get_users_sorted_desc(self):
         endpoint = self.base_url + Routes.GET_USERS_SORTED.format(order="desc")
         response = requests.get(endpoint)
@@ -45,6 +53,8 @@ class TestProductAPI:
         ids = [user["id"] for user in data]
         assert ids == sorted(ids, reverse=True)
 
+    @pytest.mark.sanity
+    @pytest.mark.run(order=5)
     def test_get_users_sorted_asc(self):
         endpoint = self.base_url + Routes.GET_USERS_SORTED.format(order="asc")
         response = requests.get(endpoint)
@@ -54,6 +64,9 @@ class TestProductAPI:
         ids = [user["id"] for user in data]
         assert ids == sorted(ids)
 
+    @pytest.mark.smoke
+    @pytest.mark.run(order=6)
+    @pytest.mark.dependency(name="add_user")
     def test_create_user(self):
         user_payload = self.payload.user_payload()
         response = requests.post(
@@ -66,6 +79,9 @@ class TestProductAPI:
         assert "id" in data
         print("Generated UserID:", data["id"])
 
+    @pytest.mark.regression
+    @pytest.mark.run(order=7)
+    @pytest.mark.dependency(depends=["add_user"])
     def test_update_user(self):
         user_id = self.config.get_property("userId")
         updated_user = self.payload.user_payload()
@@ -76,6 +92,9 @@ class TestProductAPI:
         print(json.dumps(data, indent=4))
         assert data["username"] == updated_user.username
 
+    @pytest.mark.regression
+    @pytest.mark.run(order=8)
+    @pytest.mark.dependency(depends=["add_user"])
     def test_delete_user(self):
         user_id = self.config.get_property("userId")
         endpoint = self.base_url + Routes.DELETE_USER.format(id=user_id)
