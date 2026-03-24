@@ -20,6 +20,7 @@ It is built as a **learning + portfolio project** to showcase API automation ski
 - ✅ API chaining (CRUD flow)
 - ✅ Reusable fixtures (`conftest.py`)
 - ✅ Clean and modular structure
+- ✅ Logging and reporting integration
 
 ---
 
@@ -92,7 +93,6 @@ Store-API-Testing-in-Python\
 ## ⚙️ Setup & Installation
 
 ### 1. Clone the repository
-```bash
 git clone https://github.com/VitaliiKoliuka/Store-API-Testing-in-Python.git
 cd Store-API-Testing-in-Python
 
@@ -112,4 +112,23 @@ source venv/bin/activate
 
 ### 4. Install dependencies
 pip install -r requirements.txt
+
+## ▶️ Running Tests
+
+**Run all tests**:\
+pytest -s -v testCases\
+
+**Run tets with markers**:\
+pytest -s -v -m "smoke" testCases\
+
+**Generate HTML report**s:\
+pytest -s -v --html=reports/report.html testCases\
+
+**Generate allure reports**:\
+pytest -s -v --alluredir=reports\allure-results testCases\ \
+allure generate reports\allure-results -o reports\allure-html --clean\
+allure open reports\allure-html
+
+**Execute tests via Datch Script**:\
+open command promt as a **Administrator** go to location and execute **run.bat (windows)** / **run.sh (linux/mac)**
 
